@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { Link } from 'react-router-dom';
 import "./header.css";
 
 const Header = () => {
@@ -52,9 +53,8 @@ const Header = () => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Restaurants</MenuItem>
-                        <MenuItem onClick={handleClose}>Reservations</MenuItem>
-                        {/*<MenuItem onClick={handleClose}>Logout</MenuItem>*/}
+                        <MenuItem onClick={handleClose}><Link to="/restaurants">Restaurants</Link></MenuItem>
+                        <MenuItem onClick={handleClose}><Link to="/reservations">Reservations</Link></MenuItem>
                     </Menu>
                     <Typography variant="h6" className={useStyles().title}>
                         No Reservations

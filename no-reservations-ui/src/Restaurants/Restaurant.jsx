@@ -49,6 +49,7 @@ class Restaurant extends Component {
                                 <TableCell align="center">Restaurant Location</TableCell>
                                 <TableCell align="center">Tables Available</TableCell>
                                 <TableCell align="center">Tables Reserved</TableCell>
+                                <TableCell align="center">Reservations</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
