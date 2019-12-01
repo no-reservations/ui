@@ -38,8 +38,8 @@ class Restaurant extends Component {
     render() {
         return(
             <div className="App-content-body container">
-                <div className="restaurant-header">
-                    <span>Restaurants</span>
+                <div className="restaurant-header text-secondary">
+                    <h1 className="table-header">Restaurants</h1>
                 </div>
                 <div className="row table-container">
                     <Table aria-label="simple table">
@@ -66,6 +66,9 @@ class Restaurant extends Component {
                                         </TableCell>
                                         <TableCell align="center">
                                             {rest.tables_reserved}
+                                        </TableCell>
+                                        <TableCell align="center">
+                                            <button disabled className="text-success">See Reservations</button>
                                         </TableCell>
                                     </TableRow>
                                 )
