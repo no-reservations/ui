@@ -10,3 +10,13 @@
 .restaurant-header {
     margin-top: 2%;
 }
+
+.create-restaurant-container {
+    background-color: white;
+    padding: 1%;
+    margin-top: 5%;
+}
+
+.create-button {
+    margin-top: 5%;
+}

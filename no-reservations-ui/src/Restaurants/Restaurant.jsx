@@ -7,6 +7,8 @@ import TableRow from '@material-ui/core/TableRow';
 import "../App.css";
 import "./Restaurant.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CreateRestaurant from "./CreateRestaurant";
+import {Button} from "react-bootstrap";
 
 class Restaurant extends Component {
 
@@ -32,7 +34,18 @@ class Restaurant extends Component {
                 created_at: new Date(),
                 updated_at: new Date()
             }
-        ]
+        ],
+        showCreate: false
+    };
+
+    getRest = (restaurant) => {
+        let newList = this.state.restaurants;
+        newList.push(restaurant);
+        if(restaurant) {
+            this.setState({
+                restaurants: newList
+            });
+        }
     };
 
     render() {
@@ -76,6 +89,20 @@ class Restaurant extends Component {
                             })}
                         </TableBody>
                     </Table>
+                </div>
+                <div className="create-button">
+                    {!this.state.showCreate && (
+                        <Button onClick={() => {
+                            this.setState({
+                                showCreate: !this.state.showCreate
+                            });
+                        }}>
+                            Create New Restaurant
+                        </Button>
+                    )}
+                    {this.state.showCreate && (
+                        <CreateRestaurant getRest={this.getRest}/>
+                    )}
                 </div>
             </div>
         );
