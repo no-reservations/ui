@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Header from "./Header/Header";
-import AppContainer from "./AppContainer";
+import Restaurant from "./Restaurants/Restaurant";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
                     <Header/>
                 </div>
                 <div className="App-content">
-                    <AppContainer/>
+                    <Route path="/" component={Restaurant}/>
                 </div>
             </div>
         </div>

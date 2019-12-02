@@ -1,0 +1,12 @@
+.restaurant-container {
+    min-height: inherit;
+    align-content: center;
+}
+
+.table-container {
+    background-color: white;
+}
+
+.restaurant-header {
+    margin-top: 2%;
+}

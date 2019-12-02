@@ -12,7 +12,7 @@ class AppContainer extends Component {
 
     render() {
         return(
-            <div className="App-content-body">TEST</div>
+            <div className="App-content-body">Content</div>
         );
     }
 }
