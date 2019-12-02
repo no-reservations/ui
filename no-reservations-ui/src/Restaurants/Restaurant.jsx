@@ -7,6 +7,8 @@ import TableRow from '@material-ui/core/TableRow';
 import "../App.css";
 import "./Restaurant.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CreateRestaurant from "./CreateRestaurant";
+import {Button} from "react-bootstrap";
 
 class Restaurant extends Component {
 
@@ -32,7 +34,19 @@ class Restaurant extends Component {
                 created_at: new Date(),
                 updated_at: new Date()
             }
-        ]
+        ],
+        showCreate: false
+    };
+
+    getRest = restaurant => {
+        let newList = this.state.restaurants;
+        newList.push(restaurant);
+        if(restaurant) {
+            this.setState({
+                restaurants: newList,
+                showCreate: false
+            });
+        }
     };
 
     render() {
@@ -57,25 +71,39 @@ class Restaurant extends Component {
                                 return(
                                     <TableRow key={rest.name}>
                                         <TableCell component="th" scope="row">
-                                            {rest.name}
+                                            <div>{rest.name}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            {rest.location}
+                                            <div>{rest.location}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            {rest.tables - rest.tables_reserved}
+                                            <div>{(rest.tables - rest.tables_reserved)}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            {rest.tables_reserved}
+                                            <div>{rest.tables_reserved}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <button disabled className="text-success">See Reservations</button>
+                                            <button className="text-success">See Reservations</button>
                                         </TableCell>
                                     </TableRow>
                                 )
                             })}
                         </TableBody>
                     </Table>
+                </div>
+                <div className="create-button">
+                    {!this.state.showCreate && (
+                        <Button onClick={() => {
+                            this.setState({
+                                showCreate: !this.state.showCreate
+                            });
+                        }}>
+                            Create New Restaurant
+                        </Button>
+                    )}
+                    {this.state.showCreate && (
+                        <CreateRestaurant getRest={this.getRest}/>
+                    )}
                 </div>
             </div>
         );
