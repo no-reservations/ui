@@ -5,18 +5,18 @@ class CreateRestaurant extends Component{
 
     state = {
         restaurant: {
-            name: '',
-            normal_name: '',
-            location: '',
-            tables: 0,
-            tables_reserved: 0,
-            current_reservations: 0,
-            created_at: new Date(),
-            updated_at: new Date()
+            name: String,
+            normal_name: String,
+            location: String,
+            tables: Number,
+            tables_reserved: Number,
+            current_reservations: Number,
+            created_at: Date,
+            updated_at: Date
         }
     };
 
-    handleNameInput = (input) => {
+    handleTableInfoInput = (input) => {
       const inputCaught = input.target.value;
       const inputField = input.target.id;
       let tempRest = { ...this.state.restaurant };
@@ -26,17 +26,30 @@ class CreateRestaurant extends Component{
       });
     };
 
+    createRestaurant = () => {
+      let tempRest = { ...this.state.restaurant };
+      tempRest.created_at = new Date();
+      tempRest.updated_at = new Date();
+      tempRest.current_reservations = 0;
+      tempRest.tables_reserved = 0;
+      tempRest.normal_name = '';
+      this.setState({
+          restaurant: tempRest
+      }, () => this.props.getRest(this.state.restaurant));
+    };
+
     render() {
         return(
             <div className="create-restaurant-container">
-                <Form>
+                <h1>Restaurant</h1>
+                <Form id="create-restaurant">
                     <Form.Group>
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                             id="name"
                             type="text"
                             placeholder="Enter Name"
-                            onChange={e => this.handleNameInput(e)}
+                            onChange={e => this.handleTableInfoInput(e)}
                         />
                     </Form.Group>
                     <Form.Group>
@@ -45,26 +58,26 @@ class CreateRestaurant extends Component{
                             id="location"
                             type="text"
                             placeholder="Enter Location"
-                            onChange={e => this.handleNameInput(e)}
+                            onChange={e => this.handleTableInfoInput(e)}
                         />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Tables</Form.Label>
+                        <Form.Label>Number of Tables</Form.Label>
                         <Form.Control
                             id="tables"
                             type="number"
                             placeholder="Enter The Number of Tables"
-                            onChange={e => this.handleNameInput(e)}
+                            onChange={e => this.handleTableInfoInput(e)}
                         />
                     </Form.Group>
-                    <Button
-                        variant="primary"
-                        type="submit"
-                        onClick={() => this.props.getRest(this.state.restaurant)}
-                    >
-                        Submit
-                    </Button>
                 </Form>
+                <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={() => this.createRestaurant()}
+                >
+                    Submit
+                </Button>
             </div>
         );
     }

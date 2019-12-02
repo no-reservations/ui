@@ -38,12 +38,13 @@ class Restaurant extends Component {
         showCreate: false
     };
 
-    getRest = (restaurant) => {
+    getRest = restaurant => {
         let newList = this.state.restaurants;
         newList.push(restaurant);
         if(restaurant) {
             this.setState({
-                restaurants: newList
+                restaurants: newList,
+                showCreate: false
             });
         }
     };
@@ -70,19 +71,19 @@ class Restaurant extends Component {
                                 return(
                                     <TableRow key={rest.name}>
                                         <TableCell component="th" scope="row">
-                                            {rest.name}
+                                            <div>{rest.name}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            {rest.location}
+                                            <div>{rest.location}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            {rest.tables - rest.tables_reserved}
+                                            <div>{(rest.tables - rest.tables_reserved)}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            {rest.tables_reserved}
+                                            <div>{rest.tables_reserved}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <button disabled className="text-success">See Reservations</button>
+                                            <button className="text-success">See Reservations</button>
                                         </TableCell>
                                     </TableRow>
                                 )
