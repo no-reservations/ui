@@ -49,6 +49,13 @@ class Restaurant extends Component {
         }
     };
 
+    setShowSelf = (e) => {
+        if(e !== null && e !== undefined)
+            this.setState({
+                showCreate: e
+            });
+    };
+
     render() {
         return(
             <div className="App-content-body container">
@@ -102,7 +109,7 @@ class Restaurant extends Component {
                         </Button>
                     )}
                     {this.state.showCreate && (
-                        <CreateRestaurant getRest={this.getRest}/>
+                        <CreateRestaurant setShowSelf={this.setShowSelf} getRest={this.getRest}/>
                     )}
                 </div>
             </div>
