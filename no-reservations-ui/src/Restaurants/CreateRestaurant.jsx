@@ -5,14 +5,14 @@ class CreateRestaurant extends Component{
 
     state = {
         restaurant: {
-            name: String,
-            normal_name: String,
-            location: String,
-            tables: Number,
-            tables_reserved: Number,
-            current_reservations: Number,
-            created_at: Date,
-            updated_at: Date
+            name: '',
+            normal_name: '',
+            location: '',
+            tables: 0,
+            tables_reserved: 0,
+            current_reservations: 0,
+            created_at: new Date(),
+            updated_at: new Date()
         }
     };
 
@@ -27,15 +27,22 @@ class CreateRestaurant extends Component{
     };
 
     createRestaurant = () => {
-      let tempRest = { ...this.state.restaurant };
-      tempRest.created_at = new Date();
-      tempRest.updated_at = new Date();
-      tempRest.current_reservations = 0;
-      tempRest.tables_reserved = 0;
-      tempRest.normal_name = '';
-      this.setState({
-          restaurant: tempRest
-      }, () => this.props.getRest(this.state.restaurant));
+      const name = (this.state.restaurant.name !== null) && (this.state.restaurant.name.length > 0);
+      const location = (this.state.restaurant.location !== null) && (this.state.restaurant.location.length > 0);
+      const tables = this.state.restaurant.tables !== null;
+      if(name && location && tables) {
+          let tempRest = {...this.state.restaurant};
+          tempRest.created_at = new Date();
+          tempRest.updated_at = new Date();
+          tempRest.current_reservations = 0;
+          tempRest.tables_reserved = 0;
+          tempRest.normal_name = '';
+          this.setState({
+              restaurant: tempRest
+          }, () => this.props.getRest(this.state.restaurant));
+      } else {
+          alert('name, location, and tables must all be filled out');
+      }
     };
 
     render() {
@@ -72,11 +79,20 @@ class CreateRestaurant extends Component{
                     </Form.Group>
                 </Form>
                 <Button
+                    className="submits"
                     variant="primary"
                     type="submit"
                     onClick={() => this.createRestaurant()}
                 >
                     Submit
+                </Button>
+                <Button
+                    className="submits"
+                    variant="primary"
+                    type="submit"
+                    onClick={() => this.props.setShowSelf(false)}
+                >
+                    Cancel
                 </Button>
             </div>
         );
