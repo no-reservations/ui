@@ -49,6 +49,11 @@ class Reservations extends Component {
         ]
     };
 
+    componentDidMount() {
+        const incomingRestaurant = this.props.location.param1;
+        console.log(incomingRestaurant);
+    }
+
     render() {
         return(
             <div className="App-content-body container">

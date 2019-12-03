@@ -4,6 +4,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { Link } from 'react-router-dom';
 import "../App.css";
 import "./Restaurant.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -90,7 +91,16 @@ class Restaurant extends Component {
                                             <div>{rest.tables_reserved}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <button className="text-success">See Reservations</button>
+                                            <button className="text-success">
+                                                <Link
+                                                    to={{
+                                                        pathname: "/reservations",
+                                                        param1: rest
+                                                    }}
+                                                >
+                                                    See Reservations
+                                                </Link>
+                                            </button>
                                         </TableCell>
                                     </TableRow>
                                 )
