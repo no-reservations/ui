@@ -16,39 +16,49 @@ import { API_BASE_URL } from "../config";
 class Restaurant extends Component {
     constructor(props) {
         super(props);
+        
+        let response = fetch(`${API_BASE_URL}/restaurants/all`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
 
-        let restaurants = (async () => {
-            let response = await fetch(`${API_BASE_URL}/restaurants/all`);
-            return await response.json();
-        })();
+        // let restaurants = (async () => {
+        //     let response = await fetch(`${API_BASE_URL}/restaurants/all`);
+        //     return await response.json();
+        // })();
+
         console.log(restaurants);
+        this.state = {
+            restaurants: restaurants,
+        }
     }
 
-    state = {
-        restaurants: [
-            {
-                name: 'rest1',
-                normal_name: 'rest_1',
-                location: 'beaverton',
-                tables: 10,
-                tables_reserved: 1,
-                current_reservations: 1,
-                created_at: new Date(),
-                updated_at: new Date()
-            },
-            {
-                name: 'rest2',
-                normal_name: 'rest_2',
-                location: 'portland',
-                tables: 5,
-                tables_reserved: 4,
-                current_reservations: 4,
-                created_at: new Date(),
-                updated_at: new Date()
-            }
-        ],
-        showCreate: false
-    };
+    // state = {
+    //     restaurants: [
+    //         {
+    //             name: 'rest1',
+    //             normal_name: 'rest_1',
+    //             location: 'beaverton',
+    //             tables: 10,
+    //             tables_reserved: 1,
+    //             current_reservations: 1,
+    //             created_at: new Date(),
+    //             updated_at: new Date()
+    //         },
+    //         {
+    //             name: 'rest2',
+    //             normal_name: 'rest_2',
+    //             location: 'portland',
+    //             tables: 5,
+    //             tables_reserved: 4,
+    //             current_reservations: 4,
+    //             created_at: new Date(),
+    //             updated_at: new Date()
+    //         }
+    //     ],
+    //     showCreate: false
+    // };
 
     getRest = restaurant => {
         let newList = this.state.restaurants;
