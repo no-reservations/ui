@@ -23,12 +23,12 @@ class Restaurant extends Component {
                 console.log(data);
             });
 
-        // let restaurants = (async () => {
-        //     let response = await fetch(`${API_BASE_URL}/restaurants/all`);
-        //     return await response.json();
-        // })();
+        let restaurants = (async () => {
+            let response = await fetch(`${API_BASE_URL}/restaurants/all`);
+            return await response.json();
+        })();
 
-        console.log(restaurants);
+        console.log('restaurants => ' + JSON.stringify(restaurants));
         this.state = {
             restaurants: restaurants,
         }

@@ -14,7 +14,7 @@ function App() {
                     <Header/>
                 </div>
                 <div className="App-content">
-                    <Route path="/restaurants" component={Restaurant}/>
+                    <Route path="/restaurants/all" component={Restaurant}/>
                     <Route path="/reservations" component={Reservations}/>
                 </div>
             </div>
