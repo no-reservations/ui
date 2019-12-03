@@ -11,7 +11,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateRestaurant from "./CreateRestaurant";
 import {Button} from "react-bootstrap";
 
+import { API_BASE_URL } from "../config";
+
 class Restaurant extends Component {
+    constructor(props) {
+        super(props);
+
+        let restaurants = (async () => {
+            let response = await fetch(`${API_BASE_URL}/restaurants/all`);
+            return await response.json();
+        })();
+        console.log(restaurants);
+    }
 
     state = {
         restaurants: [
