@@ -15,7 +15,7 @@ function App() {
                     <Header/>
                 </div>
                 <div className="App-content">
-                    <Route path="/home" exact={true} component={HomePage} />
+                    <Route path={"/home"} exact={true} component={HomePage} />
                     <Route path="/restaurants" exact={true} component={Restaurant}/>
                     <Route path="/reservations" exact={true} component={Reservations}/>
                 </div>

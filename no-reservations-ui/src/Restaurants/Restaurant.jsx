@@ -64,7 +64,7 @@ class Restaurant extends Component {
                     <h1 className="table-header">Restaurants</h1>
                 </div>
                 <div className="row table-container">
-                    <Table aria-label="simple table">
+                    <Table aria-label="simple table" className="restaurant-table-container">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Restaurant Name</TableCell>

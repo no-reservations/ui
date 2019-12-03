@@ -61,7 +61,7 @@ class Reservations extends Component {
                     <h1 className="table-header">{this.state.restaurant}</h1>
                 </div>
                 <div className="row table-container">
-                    <Table aria-label="simple table">
+                    <Table aria-label="simple table" className="restaurant-table-container">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Reservation Name</TableCell>
