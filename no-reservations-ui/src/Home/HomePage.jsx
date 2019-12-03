@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -12,18 +13,14 @@ const HomePage = () => {
         <Container>
             <Row>
                 <Col>
-                    <Button className="btn-primary-container" variant="primary">Create Restaurants</Button>
+                    <Link className="link-text" to="/restaurants">
+                        <Button className="btn-primary-container" variant="primary">See Restaurants</Button>
+                    </Link>
                 </Col>
                 <Col>
-                    <Button className="btn-primary-container" variant="primary">Create Reservations</Button>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Button className="btn-primary-container" variant="primary">See Restaurants</Button>
-                </Col>
-                <Col>
-                    <Button className="btn-primary-container" variant="primary">See Reservations</Button>
+                    <Link className="link-text" to="/reservations">
+                        <Button className="btn-primary-container" variant="primary">See Reservations</Button>
+                    </Link>
                 </Col>
             </Row>
         </Container>
