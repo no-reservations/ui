@@ -16,6 +16,12 @@ import { API_BASE_URL } from "../config";
 class Restaurant extends Component {
     constructor(props) {
         super(props);
+        
+        // let response = fetch(`${API_BASE_URL}/restaurants/all`)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log(data);
+        //     });
 
         this.state = {
             restaurants: [],
