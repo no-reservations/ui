@@ -4,6 +4,7 @@ import Header from "./Header/Header";
 import Restaurant from "./Restaurants/Restaurant";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Reservations from "./Reservations/Reservations";
+import HomePage from "./Home/HomePage";
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
                     <Header/>
                 </div>
                 <div className="App-content">
-                    <Route path="/restaurants" component={Restaurant}/>
-                    <Route path="/reservations" component={Reservations}/>
+                    <Route path="/home" exact={true} component={HomePage} />
+                    <Route path="/restaurants" exact={true} component={Restaurant}/>
+                    <Route path="/reservations" exact={true} component={Reservations}/>
                 </div>
             </div>
         </div>

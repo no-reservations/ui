@@ -53,6 +53,7 @@ const Header = () => {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
+                        <MenuItem onClick={handleClose}><Link to="/home">Home</Link></MenuItem>
                         <MenuItem onClick={handleClose}><Link to="/restaurants">Restaurants</Link></MenuItem>
                         <MenuItem onClick={handleClose}><Link to="/reservations">Reservations</Link></MenuItem>
                     </Menu>
