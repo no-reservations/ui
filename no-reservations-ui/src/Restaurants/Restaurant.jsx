@@ -49,6 +49,13 @@ class Restaurant extends Component {
         }
     };
 
+    setShowSelf = (e) => {
+        if(e !== null && e !== undefined)
+            this.setState({
+                showCreate: e
+            });
+    };
+
     render() {
         return(
             <div className="App-content-body container">
@@ -56,7 +63,7 @@ class Restaurant extends Component {
                     <h1 className="table-header">Restaurants</h1>
                 </div>
                 <div className="row table-container">
-                    <Table aria-label="simple table">
+                    <Table aria-label="simple table" className="restaurant-table-container">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Restaurant Name</TableCell>
@@ -111,7 +118,7 @@ class Restaurant extends Component {
                         </Button>
                     )}
                     {this.state.showCreate && (
-                        <CreateRestaurant getRest={this.getRest}/>
+                        <CreateRestaurant setShowSelf={this.setShowSelf} getRest={this.getRest}/>
                     )}
                 </div>
             </div>
