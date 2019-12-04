@@ -18,7 +18,7 @@ function App() {
                     <Route path={"/home"} exact={true} component={HomePage} />
                     <Route path={"/"} exact={true} component={HomePage} />
                     <Route path="/restaurants" exact={true} component={Restaurant}/>
-                    <Route path="/reservations" exact={true} component={Reservations}/>
+                    <Route path="/reservations/:restaurant" exact={true} component={Reservations}/>
                 </div>
             </div>
         </div>

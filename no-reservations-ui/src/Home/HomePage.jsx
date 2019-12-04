@@ -18,7 +18,7 @@ const HomePage = () => {
                     </Link>
                 </Col>
                 <Col>
-                    <Link className="link-text" to="/reservations">
+                    <Link className="link-text" to="/restaurants">
                         <Button className="btn-primary-container" variant="primary">See Reservations</Button>
                     </Link>
                 </Col>

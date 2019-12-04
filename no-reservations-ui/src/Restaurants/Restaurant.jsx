@@ -16,12 +16,6 @@ import { API_BASE_URL } from "../config";
 class Restaurant extends Component {
     constructor(props) {
         super(props);
-        
-        // let response = fetch(`${API_BASE_URL}/restaurants/all`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log(data);
-        //     });
 
         this.state = {
             restaurants: [],
@@ -32,6 +26,14 @@ class Restaurant extends Component {
     async componentDidMount() {
         let response = await fetch(`${API_BASE_URL}/restaurants/all`);
         let restaurants = await response.json();
+
+        //For presentation
+        restaurants.data[0].reservations[0] = {
+            name: 'josephs',
+            size: 5,
+            start: new Date()
+        };
+
         this.setState({
             restaurants: restaurants.data,
             isLoading: false,
@@ -93,7 +95,7 @@ class Restaurant extends Component {
                                             <button className="text-success">
                                                 <Link
                                                     to={{
-                                                        pathname: "/reservations",
+                                                        pathname: "/reservations/:restaurant",
                                                         param1: rest
                                                     }}
                                                 >

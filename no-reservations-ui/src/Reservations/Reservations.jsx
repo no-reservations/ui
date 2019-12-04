@@ -11,54 +11,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class Reservations extends Component {
 
     state = {
-        restaurant: 'restaurant 1',
-        reservations: [
-            {
-                start: new Date(),
-                end: new Date(),
-                restaurant: {
-                    name: 'reservation 1'
-                },
-                guest: {
-                    name: 'joseph'
-                },
-                size: 8
-            },
-            {
-                start: new Date(),
-                end: new Date(),
-                restaurant: {
-                    name: 'reservation 1'
-                },
-                guest: {
-                    name: 'sam'
-                },
-                size: 12
-            },
-            {
-                start: new Date(),
-                end: new Date(),
-                restaurant: {
-                    name: 'reservation 3'
-                },
-                guest: {
-                    name: 'caterina'
-                },
-                size: 2
-            }
-        ]
+        restaurant: {}
     };
 
     componentDidMount() {
         const incomingRestaurant = this.props.location.param1;
-        console.log(incomingRestaurant);
+        this.setState({
+            restaurant: incomingRestaurant
+        });
     }
 
     render() {
         return(
             <div className="App-content-body container">
                 <div className="restaurant-header text-secondary">
-                    <h1 className="table-header">{this.state.restaurant}</h1>
+                    <h1 className="table-header">{this.state.restaurant.name}</h1>
                 </div>
                 <div className="row table-container">
                     <Table aria-label="simple table" className="restaurant-table-container">
@@ -71,11 +38,11 @@ class Reservations extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.reservations.map(rez => {
+                            {(this.state.restaurant.reservations && this.state.restaurant.reservations.length > 0) ? this.state.restaurant.reservations.map(rez => {
                                 return(
-                                    <TableRow key={rez.guest.name}>
+                                    <TableRow key={rez.name}>
                                         <TableCell component="th" scope="row">
-                                            {rez.guest.name}
+                                            {rez.name}
                                         </TableCell>
                                         <TableCell align="center">
                                             {JSON.stringify(rez.start)}
@@ -88,7 +55,13 @@ class Reservations extends Component {
                                         </TableCell>
                                     </TableRow>
                                 )
-                            })}
+                            }) : (
+                                <TableRow>
+                                    <TableCell align="center">
+                                        <h1>No Reservations</h1>
+                                    </TableCell>
+                                </TableRow>
+                            )}
                         </TableBody>
                     </Table>
                 </div>

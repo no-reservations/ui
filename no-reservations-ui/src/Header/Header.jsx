@@ -55,7 +55,7 @@ const Header = () => {
                     >
                         <MenuItem onClick={handleClose}><Link to="/home">Home</Link></MenuItem>
                         <MenuItem onClick={handleClose}><Link to="/restaurants">Restaurants</Link></MenuItem>
-                        <MenuItem onClick={handleClose}><Link to="/reservations">Reservations</Link></MenuItem>
+                        <MenuItem onClick={handleClose}><Link to="/restaurants">Reservations</Link></MenuItem>
                     </Menu>
                     <Typography variant="h6" className={useStyles().title}>
                         No Reservations
