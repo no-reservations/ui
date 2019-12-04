@@ -4,94 +4,86 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+// import { useParams } from 'react-router-dom';
 import "../App.css";
 import "../Restaurants/Restaurant.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { API_BASE_URL } from "../config";
+
 class Reservations extends Component {
+    constructor(props) {
+        super(props);
 
-    state = {
-        restaurant: 'restaurant 1',
-        reservations: [
-            {
-                start: new Date(),
-                end: new Date(),
-                restaurant: {
-                    name: 'reservation 1'
-                },
-                guest: {
-                    name: 'joseph'
-                },
-                size: 8
-            },
-            {
-                start: new Date(),
-                end: new Date(),
-                restaurant: {
-                    name: 'reservation 1'
-                },
-                guest: {
-                    name: 'sam'
-                },
-                size: 12
-            },
-            {
-                start: new Date(),
-                end: new Date(),
-                restaurant: {
-                    name: 'reservation 3'
-                },
-                guest: {
-                    name: 'caterina'
-                },
-                size: 2
-            }
-        ]
-    };
+        this.state = {
+            restaurant: this.props.match.params.restaurant,
+            reservations: [],
+            isLoading: true,
+        }
+    }
 
-    componentDidMount() {
-        const incomingRestaurant = this.props.location.param1;
-        console.log(incomingRestaurant);
+    async componentDidMount() {
+        let response = await fetch(`${API_BASE_URL}/restaurants/${this.state.restaurant}/reservations`);
+        let reservations = await response.json();
+        console.log(reservations);
+
+        this.setState({
+            reservations: reservations.data,
+            isLoading: false,
+        });
     }
 
     render() {
         return(
             <div className="App-content-body container">
                 <div className="restaurant-header text-secondary">
-                    <h1 className="table-header">{this.state.restaurant}</h1>
+                    <h1 className="table-header">{this.props.restaurant}</h1>
                 </div>
-                <div className="row table-container">
-                    <Table aria-label="simple table" className="restaurant-table-container">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Reservation Name</TableCell>
-                                <TableCell align="center">Reservation Time</TableCell>
-                                <TableCell align="center">Reservation Size</TableCell>
-                                <TableCell align="center">Seat Guest or Finish/Cancel Reservation</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {this.state.reservations.map(rez => {
-                                return(
-                                    <TableRow key={rez.guest.name}>
-                                        <TableCell component="th" scope="row">
-                                            {rez.guest.name}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            {JSON.stringify(rez.start)}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            {rez.size}
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            <button disabled className="text-success">Seat Or Cancel</button>
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
-                </div>
+                {
+                    !this.state.reservations.length && (
+                    <Paper>
+                        <Typography variant="h5" component="h3">
+                            No reservations have been made yet
+                        </Typography>
+                    </Paper>
+                )}
+                {
+                    this.state.reservations.length && (
+                    <div className="row table-container">
+                        <Table aria-label="simple table" className="restaurant-table-container">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Reservation Name</TableCell>
+                                    <TableCell align="center">Reservation Time</TableCell>
+                                    <TableCell align="center">Reservation Size</TableCell>
+                                    <TableCell align="center">Seat Guest or Finish/Cancel Reservation</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {this.state.reservations.map(rez => {
+                                    return(
+                                        <TableRow key={rez.name}>
+                                            <TableCell component="th" scope="row">
+                                                {rez.name}
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                {JSON.stringify(rez.start)}
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                {rez.size}
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                <button disabled className="text-success">Seat Or Cancel</button>
+                                            </TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </div>
+                )}
             </div>
         );
     }
