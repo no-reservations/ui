@@ -11,33 +11,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateRestaurant from "./CreateRestaurant";
 import {Button} from "react-bootstrap";
 
-class Restaurant extends Component {
+import { API_BASE_URL } from "../config";
 
-    state = {
-        restaurants: [
-            {
-                name: 'rest1',
-                normal_name: 'rest_1',
-                location: 'beaverton',
-                tables: 10,
-                tables_reserved: 1,
-                current_reservations: 1,
-                created_at: new Date(),
-                updated_at: new Date()
-            },
-            {
-                name: 'rest2',
-                normal_name: 'rest_2',
-                location: 'portland',
-                tables: 5,
-                tables_reserved: 4,
-                current_reservations: 4,
-                created_at: new Date(),
-                updated_at: new Date()
-            }
-        ],
-        showCreate: false
-    };
+class Restaurant extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            restaurants: [],
+            isLoading: true,
+        }
+    }
+
+    async componentDidMount() {
+        let response = await fetch(`${API_BASE_URL}/restaurants/all`);
+        let restaurants = await response.json();
+        this.setState({
+            restaurants: restaurants.data,
+            isLoading: false,
+        });
+    }
 
     getRest = restaurant => {
         let newList = this.state.restaurants;
@@ -75,7 +68,7 @@ class Restaurant extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.state.restaurants.map(rest => {
+                            {!this.state.isLoading && this.state.restaurants.map(rest => {
                                 return(
                                     <TableRow key={rest.name}>
                                         <TableCell component="th" scope="row">
