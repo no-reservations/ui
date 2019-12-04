@@ -9,13 +9,15 @@ import "../App.css";
 import "./Restaurant.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateRestaurant from "./CreateRestaurant";
-import {Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { API_BASE_URL } from "../config";
 
 class Restaurant extends Component {
     constructor(props) {
         super(props);
+
+        // let match = useRouteMatch();
 
         this.state = {
             restaurants: [],
@@ -92,16 +94,16 @@ class Restaurant extends Component {
                                             <div>{rest.tables_reserved}</div>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <button className="text-success">
-                                                <Link
-                                                    to={{
-                                                        pathname: "/reservations/:restaurant",
-                                                        param1: rest
-                                                    }}
-                                                >
-                                                    See Reservations
-                                                </Link>
-                                            </button>
+                                            <Link
+                                                className={"text-decoration-none"}
+                                                to={{
+                                                    // pathname: "/reservations",
+                                                    pathname: `/restaurants/${rest.normal_name}/reservations`,
+                                                    // pathname: `${this.match.url}/${rest.normal_name}/reservations`,
+                                                }}
+                                            >
+                                                See Reservations
+                                            </Link>
                                         </TableCell>
                                     </TableRow>
                                 )
