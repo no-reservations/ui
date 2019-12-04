@@ -83,28 +83,9 @@ const Header = () => {
                                 </Link>
                             </ListItem>
                         </List>
-                        <Divider />
-                        <List>
-                            {/* {['All mail', 'Trash', 'Spam'].map((text, index) => ( */}
-                            <ListItem button key={"Settings"}>
-                                {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
-                                <ListItemText primary={"Settings"} />
-                            </ListItem>
-                            {/* ))} */}
-                        </List>
                         </div>
                     </Drawer>
-                    {/* <Menu 
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={handleClose}><Link to="/home">Home</Link></MenuItem>
-                        <MenuItem onClick={handleClose}><Link to="/restaurants">Restaurants</Link></MenuItem>
-                        <MenuItem onClick={handleClose}><Link to="/reservations">Reservations</Link></MenuItem>
-                    </Menu>*/}
+                    
                     <Typography variant="h6" className={useStyles().title}>
                         No Reservations
                     </Typography>
