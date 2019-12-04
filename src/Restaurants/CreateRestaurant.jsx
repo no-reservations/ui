@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Button } from "react-bootstrap";
 
 import { API_BASE_URL } from "../config";
@@ -46,7 +46,6 @@ function CreateRestaurant(props) {
                         id="name"
                         type="text"
                         placeholder="Name"
-                        // onChange={e => this.handleTableInfoInput(e)}
                     />
                     <Form.Control.Feedback></Form.Control.Feedback>
                     <Form.Control.Feedback type="invalid">
@@ -60,7 +59,6 @@ function CreateRestaurant(props) {
                         id="location"
                         type="text"
                         placeholder="City, State"
-                        // onChange={e => this.handleTableInfoInput(e)}
                     />
                     <Form.Control.Feedback type="invalid">
                         Please enter a location for your restaurant!
@@ -73,7 +71,6 @@ function CreateRestaurant(props) {
                         id="tables"
                         type="number"
                         placeholder="Number of tables"
-                        // onChange={e => this.handleTableInfoInput(e)}
                     />
                     <Form.Control.Feedback type="invalid">
                         Please enter the number of tables your restaurant has!
