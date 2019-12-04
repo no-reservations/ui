@@ -6,12 +6,17 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 import "./header.css";
 
 const Header = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
 
     const useStyles = makeStyles(theme => ({
         root: {
@@ -23,14 +28,19 @@ const Header = () => {
         title: {
             flexGrow: 1,
         },
+        list: {
+            width: 360,
+        },
     }));
 
-    const handleClick = event => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
+    const [drawer, setDrawer] = useState(false);
+    
+    const toggleDrawer = (open) => event => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+    
+        setDrawer(open);
     };
 
     return(
@@ -42,11 +52,49 @@ const Header = () => {
                         className={useStyles().menuButton}
                         color="inherit"
                         aria-label="menu"
-                        onClick={handleClick}
+                        onClick={toggleDrawer(true)}
                     >
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
-                    <Menu
+
+                    <Drawer open={drawer} onClose={toggleDrawer(false)}>
+                        <div
+                        className={useStyles().list}
+                        role="presentation"
+                        onClick={toggleDrawer(false)}
+                        onKeyDown={toggleDrawer(false)}
+                        >
+                        <List>
+                            <ListItem button key="Home">
+                                <Link to="/home">
+                                    <ListItemText primary="Home" />
+                                </Link>
+                            </ListItem>
+                            
+                            <ListItem button key="Restaurants">
+                                <Link to="/restaurants">
+                                    <ListItemText primary="Restaurants" />
+                                </Link>
+                            </ListItem>
+
+                            <ListItem button key="Reservations">
+                                <Link to="/reservations">
+                                    <ListItemText primary="Reservations" />
+                                </Link>
+                            </ListItem>
+                        </List>
+                        <Divider />
+                        <List>
+                            {/* {['All mail', 'Trash', 'Spam'].map((text, index) => ( */}
+                            <ListItem button key={"Settings"}>
+                                {/* <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon> */}
+                                <ListItemText primary={"Settings"} />
+                            </ListItem>
+                            {/* ))} */}
+                        </List>
+                        </div>
+                    </Drawer>
+                    {/* <Menu 
                         id="simple-menu"
                         anchorEl={anchorEl}
                         keepMounted
@@ -56,7 +104,7 @@ const Header = () => {
                         <MenuItem onClick={handleClose}><Link to="/home">Home</Link></MenuItem>
                         <MenuItem onClick={handleClose}><Link to="/restaurants">Restaurants</Link></MenuItem>
                         <MenuItem onClick={handleClose}><Link to="/reservations">Reservations</Link></MenuItem>
-                    </Menu>
+                    </Menu>*/}
                     <Typography variant="h6" className={useStyles().title}>
                         No Reservations
                     </Typography>
