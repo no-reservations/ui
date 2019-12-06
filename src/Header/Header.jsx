@@ -68,13 +68,13 @@ const Header = () => {
                             </ListItem>
                             
                             <ListItem button key="Restaurants">
-                                <Link to="/restaurants">
+                                <Link to="/restaurants/all">
                                     <ListItemText primary="Restaurants" />
                                 </Link>
                             </ListItem>
 
                             <ListItem button key="Reservations">
-                                <Link to="/reservations">
+                                <Link to="/restaurants/all">
                                     <ListItemText primary="Reservations" />
                                 </Link>
                             </ListItem>

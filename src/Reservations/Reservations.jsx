@@ -26,6 +26,7 @@ class Reservations extends Component {
 
     async componentDidMount() {
         let response = await fetch(`${API_BASE_URL}/restaurants/${this.state.restaurant}/reservations`);
+        console.log(JSON.stringify(response));
         let reservations = await response.json();
         console.log(reservations);
 
@@ -41,14 +42,6 @@ class Reservations extends Component {
                 <div className="restaurant-header text-secondary">
                     <h1 className="table-header">{this.props.restaurant}</h1>
                 </div>
-                {
-                    !this.state.reservations.length && (
-                    <Paper>
-                        <Typography variant="h5" component="h3">
-                            No reservations have been made yet
-                        </Typography>
-                    </Paper>
-                )}
                 {
                     this.state.reservations.length && (
                     <div className="row table-container">

@@ -35,9 +35,19 @@ function CreateRestaurant(props) {
         }
     };
 
+    const handleCancel = event => {
+        props.setShowSelf(false);
+        const form = document.getElementById("create-restaurant-form");
+
+        form.name.value = '';
+        form.location.value = '';
+        form.tables.value = '';
+    };
+
     return(
         <div className="create-restaurant-container">
             <h1>New Restaurant</h1>
+            {JSON.stringify(props.setShowSelf)}
             <Form id="create-restaurant-form" noValidate validated={validated} onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Name</Form.Label>
@@ -88,12 +98,16 @@ function CreateRestaurant(props) {
             <Button
                 className="submits"
                 variant="secondary"
-                onClick={() => props.setShowSelf(false)}
+                onClick={() => handleCancel}
             >
                 Cancel
             </Button>
         </div>
     );
 }
+
+CreateRestaurant.defaultProps = {
+    setShowSelf: function () {}
+};
 
 export default CreateRestaurant;

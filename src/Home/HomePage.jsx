@@ -13,13 +13,13 @@ const HomePage = () => {
         <Container>
             <Row>
                 <Col>
-                    <Link className="link-text" to="/restaurants">
+                    <Link className="link-text" to="/restaurants/all">
                         <Button className="btn-primary-container" variant="primary">See Restaurants</Button>
                     </Link>
                 </Col>
                 <Col>
-                    <Link className="link-text" to="/reservations">
-                        <Button className="btn-primary-container" variant="primary">See Reservations</Button>
+                    <Link className="link-text" to="/create-restaurant">
+                        <Button className="btn-primary-container" variant="primary">Create Restaurant</Button>
                     </Link>
                 </Col>
             </Row>
