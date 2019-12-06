@@ -43,7 +43,7 @@ class Reservations extends Component {
                     <h1 className="table-header">{this.props.restaurant}</h1>
                 </div>
                 {
-                    this.state.reservations.length && (
+                    this.state.reservations.length ? (
                     <div className="row table-container">
                         <Table aria-label="simple table" className="restaurant-table-container">
                             <TableHead>
@@ -76,7 +76,13 @@ class Reservations extends Component {
                             </TableBody>
                         </Table>
                     </div>
-                )}
+                ) : (
+                        <Paper>
+                            <Typography variant="h5" component="h3">
+                                No reservations have been made yet
+                            </Typography>
+                        </Paper>
+                    )}
             </div>
         );
     }
