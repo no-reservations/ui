@@ -1,3 +1,14 @@
+
+TECHNOLOGIES/FRAMEWORKS/LIBRARIES USED:
+React
+Express
+NPM
+MongoDB
+Docker
+Material UI
+Bootstrap (for react)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
