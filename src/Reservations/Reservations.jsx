@@ -12,15 +12,18 @@ import "../Restaurants/Restaurant.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { API_BASE_URL } from "../config";
+import {Button} from "react-bootstrap";
+import CreateReservation from "./CreateReservation";
 
 class Reservations extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            restaurant: this.props.match.params.restaurant,
+            restaurant: this.props.match.params.res,
             reservations: [],
             isLoading: true,
+            showCreate: false
         }
     }
 
@@ -28,7 +31,6 @@ class Reservations extends Component {
         let response = await fetch(`${API_BASE_URL}/restaurants/${this.state.restaurant}/reservations`);
         console.log(JSON.stringify(response));
         let reservations = await response.json();
-        console.log(reservations);
 
         this.setState({
             reservations: reservations.data,
@@ -43,7 +45,7 @@ class Reservations extends Component {
                     <h1 className="table-header">{this.props.restaurant}</h1>
                 </div>
                 {
-                    this.state.reservations.length ? (
+                    (this.state.reservations && this.state.reservations.length > 0) ? (
                     <div className="row table-container">
                         <Table aria-label="simple table" className="restaurant-table-container">
                             <TableHead>
@@ -83,6 +85,20 @@ class Reservations extends Component {
                             </Typography>
                         </Paper>
                     )}
+                <div className="create-button">
+                    {!this.state.showCreate && (
+                        <Button onClick={() => {
+                            this.setState({
+                                showCreate: !this.state.showCreate
+                            });
+                        }}>
+                            Create New Reservation
+                        </Button>
+                    )}
+                    {this.state.showCreate && (
+                        <CreateReservation setShowSelf={this.setShowSelf} restaurant={this.state.restaurant.normal_name}/>
+                    )}
+                </div>
             </div>
         );
     }

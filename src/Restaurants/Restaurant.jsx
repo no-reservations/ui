@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import "../App.css";
 import "./Restaurant.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CreateRestaurant from "./CreateRestaurant";
 import { Button } from "react-bootstrap";
 
 import { API_BASE_URL } from "../config";
@@ -31,6 +30,12 @@ class Restaurant extends Component {
         this.setState({
             restaurants: restaurants.data,
             isLoading: false,
+        });
+    }
+
+    componentWillUnmount() {
+        this.setState({
+            isLoading: true
         });
     }
 
@@ -90,7 +95,7 @@ class Restaurant extends Component {
                                                 className={"text-decoration-none"}
                                                 to={{
                                                     // pathname: "/reservations",
-                                                    pathname: `/restaurants/${rest.normal_name}/reservations`,
+                                                    pathname: `/restaurants/:res/reservations`
                                                     // pathname: `${this.match.url}/${rest.normal_name}/reservations`,
                                                 }}
                                             >
@@ -112,9 +117,6 @@ class Restaurant extends Component {
                         }}>
                             Create New Restaurant
                         </Button>
-                    )}
-                    {this.state.showCreate && (
-                        <CreateRestaurant setShowSelf={this.setShowSelf} getRest={this.getRest}/>
                     )}
                 </div>
             </div>
